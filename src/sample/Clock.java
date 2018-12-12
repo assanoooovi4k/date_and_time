@@ -15,6 +15,7 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.*;
 import javafx.util.Duration;
 
+import java.time.LocalTime;
 import java.util.*;
 
 /** Note that this clock does not keep perfect time, but is close. 
@@ -25,7 +26,7 @@ public class Clock extends Application {
     // construct the analogueClock pieces.
     final Circle face     = new Circle(100, 100, 100);
     face.setId("face");
-    final Label brand     = new Label("Splotch");
+    final Label brand     = new Label("brand");
     brand.setId("brand");
     brand.layoutXProperty().bind(face.centerXProperty().subtract(brand.widthProperty().divide(2)));
     brand.layoutYProperty().bind(face.centerYProperty().add(face.radiusProperty().divide(2)));
@@ -54,11 +55,18 @@ public class Clock extends Application {
     final Label digitalClock = new Label();
     digitalClock.setId("digitalClock");
 
-    // determine the starting time.
-    Calendar calendar            = GregorianCalendar.getInstance();
-    final double seedSecondDegrees  = calendar.get(Calendar.SECOND) * (360 / 60);
-    final double seedMinuteDegrees  = (calendar.get(Calendar.MINUTE) + seedSecondDegrees / 360.0) * (360 / 60);
-    final double seedHourDegrees    = (calendar.get(Calendar.HOUR)   + seedMinuteDegrees / 360.0) * (360 / 12) ;
+    final Label digitalDate = new Label();
+    digitalClock.setId("digitalClock");
+
+//     determine the starting time.
+    LocalTime calendar1            = LocalTime.now();
+    final double seedSecondDegrees  = calendar1.getSecond()* (360 / 60) ;
+    final double seedMinuteDegrees  = (calendar1.getMinute() + seedSecondDegrees / 360.0) * (360 / 60);
+    final double seedHourDegrees  = (calendar1.getHour()+ seedMinuteDegrees / 360.0) * (360 / 12) ;
+//    Calendar calendar            = GregorianCalendar.getInstance();
+//    final double seedSecondDegrees  = calendar.get(Calendar.SECOND) * (360 / 60);
+//    final double seedMinuteDegrees  = (calendar.get(Calendar.MINUTE) + seedSecondDegrees / 360.0) * (360 / 60);
+//    final double seedHourDegrees    = (calendar.get(Calendar.HOUR)   + seedMinuteDegrees / 360.0) * (360 / 12) ;
 
     // define rotations to map the analogueClock to the current time.
     final Rotate hourRotate      = new Rotate(seedHourDegrees);
