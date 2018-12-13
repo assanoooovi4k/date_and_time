@@ -1,4 +1,4 @@
-package controller;
+package by.bntu.fitr.povt.assanoooovi4k.controller;
 
 import java.io.IOException;
 

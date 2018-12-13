@@ -1,4 +1,4 @@
-package sample;
+package by.bntu.fitr.povt.assanoooovi4k.sample;
 
 import javafx.animation.*;
 import javafx.application.Application;

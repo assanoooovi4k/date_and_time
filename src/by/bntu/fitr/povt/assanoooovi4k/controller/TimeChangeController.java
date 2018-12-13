@@ -1,4 +1,4 @@
-package controller;
+package by.bntu.fitr.povt.assanoooovi4k.controller;
 
 import com.jfoenix.controls.JFXTimePicker;
 
@@ -7,14 +7,10 @@ import java.net.URL;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import model.validator.DataValidator;
 
-public class TimeChangeController {
+public class TimeChangeController{
 
     @FXML
     private ResourceBundle resources;
@@ -45,7 +41,8 @@ public class TimeChangeController {
                 stage.close();
             }
             catch (NullPointerException e) {
-                openNewWindow("../view/invalidData.fxml");
+                RootController rootController = new RootController();
+                rootController.openNewWindow("../view/invalidData.fxml");
             }
 
 //            try {
@@ -56,21 +53,4 @@ public class TimeChangeController {
 
         });
     }
-
-    private void openNewWindow(String filePath) {
-        FXMLLoader loader = new FXMLLoader();
-
-        loader.setLocation(getClass().getResource(filePath));
-        try {
-            loader.load();
-        } catch (IOException e) {
-            //exception
-        }
-
-        Parent root = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-
 }

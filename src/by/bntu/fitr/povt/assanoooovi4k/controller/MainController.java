@@ -1,10 +1,11 @@
-package controller;
+package by.bntu.fitr.povt.assanoooovi4k.controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 
 public class MainController extends Application {
 
@@ -15,9 +16,8 @@ public class MainController extends Application {
         primaryStage.setTitle("Date and time");
         primaryStage.setScene(new Scene(root, 700, 400));
         primaryStage.show();
-    }
 
-    public static void main(String[] args) {
-        launch(args);
+//        by.bntu.fitr.povt.assanoooovi4k.sample.Clock clock = new by.bntu.fitr.povt.assanoooovi4k.sample.Clock();
+//        clock.start(primaryStage);
     }
 }

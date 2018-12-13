@@ -1,4 +1,4 @@
-package controller;
+package by.bntu.fitr.povt.assanoooovi4k.controller;
 
 import com.jfoenix.controls.JFXDatePicker;
 
@@ -27,7 +27,8 @@ public class DateChangeController {
     @FXML
     void initialize() {
         applyDateButton.setOnAction(event -> {
-            LocalDate localDate = datePicker.getValue();
+            try {
+                LocalDate localDate = datePicker.getValue();
 
 //            try {
 //                Runtime.getRuntime().exec("cmd /C date " + localDate.toString());
@@ -35,15 +36,20 @@ public class DateChangeController {
 //                e.printStackTrace();
 //            }
 
-            ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/C", "date", localDate.toString());
-            try {
-                builder.start();
-            } catch (IOException e) {
-                //exception
-            }
+                ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/C", "date", localDate.toString());
+                try {
+                    builder.start();
+                } catch (IOException e) {
+                    //exception
+                }
 
-            Stage stage = (Stage) applyDateButton.getScene().getWindow();
-            stage.close();
+                Stage stage = (Stage) applyDateButton.getScene().getWindow();
+                stage.close();
+            }
+            catch (NullPointerException e) {
+                RootController rootController = new RootController();
+                rootController.openNewWindow("../view/invalidData.fxml");
+            }
         });
 
     }

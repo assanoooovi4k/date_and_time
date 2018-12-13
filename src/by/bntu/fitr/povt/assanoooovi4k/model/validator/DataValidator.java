@@ -1,4 +1,4 @@
-package model.validator;
+package by.bntu.fitr.povt.assanoooovi4k.model.validator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
