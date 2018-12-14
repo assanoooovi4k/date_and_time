@@ -1,5 +1,6 @@
 package by.bntu.fitr.povt.assanoooovi4k.controller;
 
+import by.bntu.fitr.povt.assanoooovi4k.model.formater.DataFormatter;
 import com.jfoenix.controls.JFXDatePicker;
 
 import java.io.IOException;
@@ -29,14 +30,14 @@ public class DateChangeController {
         applyDateButton.setOnAction(event -> {
             try {
                 LocalDate localDate = datePicker.getValue();
-
+                String formattedDate = DataFormatter.formatDateForChange(localDate);
 //            try {
 //                Runtime.getRuntime().exec("cmd /C date " + localDate.toString());
 //            } catch (IOException e) {
 //                e.printStackTrace();
 //            }
 
-                ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/C", "date", localDate.toString());
+                ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/C", "date", formattedDate);
                 try {
                     builder.start();
                 } catch (IOException e) {

@@ -46,6 +46,7 @@ public class RootController {
     void initialize() {
         changeTimeButton.setOnAction(event -> openNewWindow("../view/changeTime.fxml"));
         changeDateButton.setOnAction(event -> openNewWindow("../view/changeDate.fxml"));
+        changeTimeZoneButton.setOnAction(event -> openNewWindow("../view/changeTimeZone.fxml"));
         DigitalClock digitalClock = new DigitalClock(timeField);
         DigitalDate digitalDate = new DigitalDate(dateField);
     }
