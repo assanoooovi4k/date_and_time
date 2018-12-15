@@ -30,12 +30,9 @@ public class DateChangeController {
         applyDateButton.setOnAction(event -> {
             try {
                 LocalDate localDate = datePicker.getValue();
+                System.out.println(localDate);
                 String formattedDate = DataFormatter.formatDateForChange(localDate);
-//            try {
-//                Runtime.getRuntime().exec("cmd /C date " + localDate.toString());
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
+                System.out.println(formattedDate);
 
                 ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/C", "date", formattedDate);
                 try {
@@ -49,7 +46,7 @@ public class DateChangeController {
             }
             catch (NullPointerException e) {
                 RootController rootController = new RootController();
-                rootController.openNewWindow("../view/invalidData.fxml");
+                rootController.openNewWindow("/view/invalidData.fxml");
             }
         });
 

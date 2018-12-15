@@ -42,7 +42,7 @@ public class TimeChangeController{
             }
             catch (NullPointerException e) {
                 RootController rootController = new RootController();
-                rootController.openNewWindow("../view/invalidData.fxml");
+                rootController.openNewWindow("/view/invalidData.fxml");
             }
 
 //            try {

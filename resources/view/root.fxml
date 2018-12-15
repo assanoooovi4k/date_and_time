@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="by.bntu.fitr.povt.assanoooovi4k.controller.RootController">
+   <children>
+      <AnchorPane layoutX="-1.0" prefHeight="291.0" prefWidth="269.0" />
+      <Button fx:id="refreshButton" mnemonicParsing="false" prefHeight="34.0" text="Refresh stats" />
+      <Button fx:id="changeTimeButton" layoutX="472.0" layoutY="119.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="190.0" text="CHANGE TIME" />
+      <Button fx:id="changeDateButton" layoutX="472.0" layoutY="190.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="190.0" text="CHANGE DATE" />
+      <Button fx:id="changeTimeZoneButton" layoutX="472.0" layoutY="308.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="190.0" text="CHANGE TIME ZONE" />
+      <Label fx:id="timeField" layoutX="303.0" layoutY="135.0" prefHeight="33.0" prefWidth="159.0" text="Label" />
+      <Label fx:id="dateField" layoutX="303.0" layoutY="209.0" prefHeight="44.0" prefWidth="159.0" text="Label" wrapText="true" />
+      <Label fx:id="timeZoneField" layoutX="181.0" layoutY="329.0" prefHeight="33.0" prefWidth="269.0" text="Label" />
+      <Label layoutX="315.0" layoutY="26.0" prefHeight="67.0" prefWidth="347.0" text="Date and time">
+         <font>
+            <Font name="Footlight MT Light" size="47.0" />
+         </font>
+      </Label>
+      <Label fx:id="timeZoneField1" layoutX="181.0" layoutY="303.0" prefHeight="33.0" prefWidth="159.0" text="Time Zone:" />
+      <Label fx:id="timeZoneField2" layoutX="303.0" layoutY="184.0" prefHeight="33.0" prefWidth="159.0" text="Date:" />
+      <Label fx:id="timeZoneField3" layoutX="303.0" layoutY="113.0" prefHeight="33.0" prefWidth="159.0" text="Time:" />
+   </children>
+</AnchorPane>

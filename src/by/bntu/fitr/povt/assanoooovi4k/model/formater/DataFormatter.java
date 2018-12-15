@@ -1,6 +1,7 @@
 package by.bntu.fitr.povt.assanoooovi4k.model.formater;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
@@ -10,7 +11,9 @@ public class DataFormatter {
     private static final String DATE_FORMAT_FOR_VIEW_PATTERN =
             "EEEE, MMMM dd/MM/yyyy";
     private static final String DATE_FORMAT_FOR_CHANGE_PATTERN =
-            "dd/MM/yyyy";
+            "MM/dd/yyyy";
+    private static final String DATE_TIME_PATTERN =
+            "EEEE, MMMM dd/MM/yyyy hh:mm a";
 
 
     public static String formatTimeForView(LocalTime time) {
@@ -26,6 +29,11 @@ public class DataFormatter {
     public static String formatDateForChange(LocalDate date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT_FOR_CHANGE_PATTERN);
         return date.format(formatter);
+    }
+
+    public static String formatDateTimeForView(LocalDateTime dateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
+        return dateTime.format(formatter);
     }
 
 }

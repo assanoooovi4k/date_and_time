@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 
 import by.bntu.fitr.povt.assanoooovi4k.model.util.DigitalClock;
 import by.bntu.fitr.povt.assanoooovi4k.model.util.DigitalDate;
+import by.bntu.fitr.povt.assanoooovi4k.model.util.DigitalDateAndTime;
+import by.bntu.fitr.povt.assanoooovi4k.model.util.DigitalTimeZone;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -44,11 +46,12 @@ public class RootController {
 
     @FXML
     void initialize() {
-        changeTimeButton.setOnAction(event -> openNewWindow("../view/changeTime.fxml"));
-        changeDateButton.setOnAction(event -> openNewWindow("../view/changeDate.fxml"));
-        changeTimeZoneButton.setOnAction(event -> openNewWindow("../view/changeTimeZone.fxml"));
+        changeTimeButton.setOnAction(event -> openNewWindow("/view/changeTime.fxml"));
+        changeDateButton.setOnAction(event -> openNewWindow("/view/changeDate.fxml"));
+        changeTimeZoneButton.setOnAction(event -> openNewWindow("/view/changeTimeZone.fxml"));
         DigitalClock digitalClock = new DigitalClock(timeField);
         DigitalDate digitalDate = new DigitalDate(dateField);
+        DigitalTimeZone digitalTimeZone = new DigitalTimeZone(timeZoneField);
     }
 
     void openNewWindow(String filePath) {

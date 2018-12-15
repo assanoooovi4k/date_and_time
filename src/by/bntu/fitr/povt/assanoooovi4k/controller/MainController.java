@@ -12,12 +12,10 @@ public class MainController extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../view/root.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/root.fxml"));
         primaryStage.setTitle("Date and time");
         primaryStage.setScene(new Scene(root, 700, 400));
         primaryStage.show();
 
-//        by.bntu.fitr.povt.assanoooovi4k.sample.Clock clock = new by.bntu.fitr.povt.assanoooovi4k.sample.Clock();
-//        clock.start(primaryStage);
     }
 }

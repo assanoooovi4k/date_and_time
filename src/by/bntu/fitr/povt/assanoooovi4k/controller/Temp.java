@@ -31,10 +31,21 @@ public class Temp {
 //
 //            System.out.println(zoneId + " " + offsetFormatter.format(offset));
 //        }
+//
+//        List<TimeZoneList.TimeZoneWithDisplayNames> returnedZones = TimeZoneList.getInstance().getTimeZones();
+//        for (TimeZoneList.TimeZoneWithDisplayNames zone : returnedZones) {
+//            System.out.println(zone.getStandardDisplayName());
+//        }
 
-        List<TimeZoneList.TimeZoneWithDisplayNames> returnedZones = TimeZoneList.getInstance().getTimeZones();
-        for (TimeZoneList.TimeZoneWithDisplayNames zone : returnedZones) {
-            System.out.println(zone.getStandardDisplayName());
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT+12"));
+        System.out.println(LocalTime.now());
+        ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/C", "tzutil /s " + "\"Tokyo Standard Time\"");
+        try {
+            builder.start();
+        } catch (IOException e) {
+            //exception
         }
+        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Tokyo"));
+        System.out.println(LocalTime.now());
     }
 }
