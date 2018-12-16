@@ -1,30 +1,43 @@
 package by.bntu.fitr.povt.assanoooovi4k.controller;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-import by.bntu.fitr.povt.assanoooovi4k.model.util.DigitalClock;
-import by.bntu.fitr.povt.assanoooovi4k.model.util.DigitalDate;
-import by.bntu.fitr.povt.assanoooovi4k.model.util.DigitalDateAndTime;
-import by.bntu.fitr.povt.assanoooovi4k.model.util.DigitalTimeZone;
+import by.bntu.fitr.povt.assanoooovi4k.model.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
 public class RootController {
-    @FXML
-    private ResourceBundle resources;
+
 
     @FXML
-    private URL location;
+    private Group analogueClock;
 
     @FXML
-    Button button = new Button();
+    private Circle face;
+
+    @FXML
+    private Group ticks;
+
+    @FXML
+    private Line hourHand;
+
+    @FXML
+    private Line minuteHand;
+
+    @FXML
+    private Line secondHand;
+
+    @FXML
+    private Circle spindle;
 
     @FXML
     private Button changeTimeButton;
@@ -45,13 +58,27 @@ public class RootController {
     private Label timeZoneField;
 
     @FXML
+    private Label timeZoneLabel;
+
+    @FXML
+    private Label dateLabel;
+
+    @FXML
+    private Label timeLabel;
+
+    @FXML
     void initialize() {
+        initializeTicks();
         changeTimeButton.setOnAction(event -> openNewWindow("/view/changeTime.fxml"));
         changeDateButton.setOnAction(event -> openNewWindow("/view/changeDate.fxml"));
         changeTimeZoneButton.setOnAction(event -> openNewWindow("/view/changeTimeZone.fxml"));
+
         DigitalClock digitalClock = new DigitalClock(timeField);
         DigitalDate digitalDate = new DigitalDate(dateField);
         DigitalTimeZone digitalTimeZone = new DigitalTimeZone(timeZoneField);
+        AnalogueClock analogueClock = new AnalogueClock(hourHand, minuteHand, secondHand);
+
+
     }
 
     void openNewWindow(String filePath) {
@@ -66,27 +93,19 @@ public class RootController {
 
         Parent root = loader.getRoot();
         Stage stage = new Stage();
+        MainController.initializeTitleAndIcon(stage);
         stage.setScene(new Scene(root));
         stage.show();
     }
 
-//
-//    final Timeline digitalTime = new Timeline(
-//            new KeyFrame(Duration.seconds(0),
-//                    new EventHandler<ActionEvent>() {
-//                        @Override public void handle(ActionEvent actionEvent) {
-//                            Calendar calendar            = GregorianCalendar.getInstance();
-//                            String hourString   = pad(2, '0', calendar.get(Calendar.HOUR)   == 0 ? "12" : calendar.get(Calendar.HOUR) + "");
-//                            String minuteString = pad(2, '0', calendar.get(Calendar.MINUTE) + "");
-//                            String secondString = pad(2, '0', calendar.get(Calendar.SECOND) + "");
-//                            String ampmString   = calendar.get(Calendar.AM_PM) == Calendar.AM ? "AM" : "PM";
-//                            timeField.setText(hourString + ":" + minuteString + ":" + secondString + " " + ampmString);
-//                        }
-//                    }
-//            ),
-//            new KeyFrame(Duration.seconds(1))
-//    );
-
-
+    private void initializeTicks() {
+        for (int i = 0; i < 12; i++) {
+            Line tick = new Line(0, -83, 0, -93);
+            tick.setTranslateX(0);
+            tick.setTranslateY(0);
+            tick.getTransforms().add(new Rotate(i * (360 / 12)));
+            ticks.getChildren().add(tick);
+        }
+    }
 }
 

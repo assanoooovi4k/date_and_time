@@ -6,11 +6,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class TimeChangeController{
+public class TimeChangeController {
 
     @FXML
     private ResourceBundle resources;
@@ -31,26 +32,16 @@ public class TimeChangeController{
                 LocalTime localTime = timePicker.getValue();
 
                 ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/C", "time", localTime.toString());
-                try {
-                    builder.start();
-                } catch (IOException e) {
-                    //exception
-                }
+                builder.start();
 
                 Stage stage = (Stage) applyTimeButton.getScene().getWindow();
                 stage.close();
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 RootController rootController = new RootController();
                 rootController.openNewWindow("/view/invalidData.fxml");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-//            try {
-//                Runtime.getRuntime().exec("cmd /C time " + localTime.toString());
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-
         });
     }
 }

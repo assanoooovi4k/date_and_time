@@ -14,6 +14,6 @@
                 <Font name="Footlight MT Light" size="47.0" />
             </font>
         </Label>
-      <JFXDatePicker fx:id="datePicker" layoutX="85.0" layoutY="167.0" prefHeight="67.0" prefWidth="234.0" />
+      <JFXDatePicker fx:id="datePicker" defaultColor="BLACK" layoutX="85.0" layoutY="167.0" prefHeight="67.0" prefWidth="234.0" />
     </children>
 </AnchorPane>

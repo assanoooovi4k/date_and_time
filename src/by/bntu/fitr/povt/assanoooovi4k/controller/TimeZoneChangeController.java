@@ -6,9 +6,9 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
 
-import by.bntu.fitr.povt.assanoooovi4k.model.TimeZoneList;
+import by.bntu.fitr.povt.assanoooovi4k.model.collection.TimeZoneList;
 import by.bntu.fitr.povt.assanoooovi4k.model.formater.DataFormatter;
-import by.bntu.fitr.povt.assanoooovi4k.model.util.DigitalDateAndTime;
+import by.bntu.fitr.povt.assanoooovi4k.model.animation.DigitalDateAndTime;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -41,24 +41,18 @@ public class TimeZoneChangeController {
 
     @FXML
     void initialize() {
-        //will fix it
-//        currentField.setText();
-        ObservableList<String> observableList = FXCollections.observableArrayList();
-        for (TimeZoneList.TimeZoneWithDisplayNames zone : returnedZones) {
-            observableList.add(zone.getDisplayName());
-        }
-        timeZoneBox.setItems(observableList);
-
+        initializeTimeZoneBox();
         DigitalDateAndTime digitalDateAndTime = new DigitalDateAndTime(currentField);
 
         timeZoneBox.setOnAction(event -> {
             String string = timeZoneBox.getValue();
+
             for (TimeZoneList.TimeZoneWithDisplayNames zone : returnedZones) {
                 if (zone.getDisplayName().equals(string)) {
-                    string = zone.getTimeZone().getID() + "";
-                    System.out.println(string);
+                    string = zone.getTimeZone().getID();
                 }
             }
+
             ZoneId zoneId = ZoneId.of(string);
             LocalDateTime localDateTime = LocalDateTime.now(zoneId);
             String newString = DataFormatter.formatDateTimeForView(localDateTime);
@@ -69,35 +63,38 @@ public class TimeZoneChangeController {
         applyTimeZoneButton.setOnAction(event -> {
             if (timeZoneBox.getValue() != null) {
                 String string = timeZoneBox.getValue();
+
                 for (TimeZoneList.TimeZoneWithDisplayNames zone : returnedZones) {
                     if (zone.getDisplayName().equals(string)) {
-                        System.out.println(zone.getStandardDisplayName());
                         TimeZone.setDefault(zone.getTimeZone());
-                        string = "\"" + zone.getStandardDisplayName() + "\"";;
+                        string = "\"" + zone.getStandardDisplayName() + "\"";
                     }
                 }
-//
-//                try {
-//                    Runtime.getRuntime().exec("tzutil /s " + string);
-//                    System.out.println(string);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
+
 
                 ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/C", "tzutil /s " + string);
                 try {
                     builder.start();
                 } catch (IOException e) {
-                    //exception
+                    e.printStackTrace();
                 }
+
 
                 Stage stage = (Stage) applyTimeZoneButton.getScene().getWindow();
                 stage.close();
-            }
-            else {
+            } else {
                 RootController rootController = new RootController();
                 rootController.openNewWindow("/view/invalidData.fxml");
             }
         });
     }
+
+    private void initializeTimeZoneBox() {
+        ObservableList<String> observableList = FXCollections.observableArrayList();
+        for (TimeZoneList.TimeZoneWithDisplayNames zone : returnedZones) {
+            observableList.add(zone.getDisplayName());
+        }
+        timeZoneBox.setItems(observableList);
+    }
+
 }

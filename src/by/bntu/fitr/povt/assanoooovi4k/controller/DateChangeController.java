@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -30,23 +31,18 @@ public class DateChangeController {
         applyDateButton.setOnAction(event -> {
             try {
                 LocalDate localDate = datePicker.getValue();
-                System.out.println(localDate);
                 String formattedDate = DataFormatter.formatDateForChange(localDate);
-                System.out.println(formattedDate);
 
                 ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/C", "date", formattedDate);
-                try {
-                    builder.start();
-                } catch (IOException e) {
-                    //exception
-                }
+                builder.start();
 
                 Stage stage = (Stage) applyDateButton.getScene().getWindow();
                 stage.close();
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 RootController rootController = new RootController();
                 rootController.openNewWindow("/view/invalidData.fxml");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
 
