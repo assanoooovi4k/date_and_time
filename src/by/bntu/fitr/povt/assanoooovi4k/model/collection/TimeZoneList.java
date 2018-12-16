@@ -4,7 +4,6 @@ import java.time.ZoneId;
 import java.util.*;
 
 public class TimeZoneList {
-
     private static final List<TimeZoneMapping> ZONEMAPPINGS = new ArrayList<>();
 
     static {
