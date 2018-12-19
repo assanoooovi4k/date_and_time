@@ -1,4 +1,4 @@
-First java fx project
+First java fx project;
 
 This is a project for Windows 7+(language of OS - eng);
 
